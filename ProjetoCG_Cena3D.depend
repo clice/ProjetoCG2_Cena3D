@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1710950422 source:c:\users\alexandre\projetocg2_cena3d\main.c
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<GL/glut.h>
+
