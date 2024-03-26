@@ -79,15 +79,12 @@ void timer(int extra);
 void atualizarObjetos();
 void definirMaterialObjeto(Material material);
 
-void desenharAmbiente();
-void desenharEsfera();
 void desenharBule();
-void desenharToro();
 
 ///////////////////////////////////////////////////////////////////
 
 int init(){
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);   // Cor do background
+    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);   // Cor do background
     glEnable(GL_DEPTH_TEST);                // Remoção de superfície oculta
     glMatrixMode(GL_MODELVIEW);             // Define que a matriz é de modelo
     glLoadIdentity();                       // Carrega a matriz identidade
@@ -110,7 +107,6 @@ int main (int argc, char ** argv)
 
     tela = glutCreateWindow("Renderizacao de uma Cena 3D - Computacao Grafica");
 
-    // glutSpecialFunc(funcoesEspeciaisTeclado);   // Chamadas quando as teclas "especiais" do teclado são
     init();
     glutDisplayFunc(telaInicial);                  // Para mostrar elementos na tela rederizando os objetos
     glutTimerFunc(0, timer, 0);
@@ -127,29 +123,31 @@ void telaInicial()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);    // Limpa o buffer
     glMatrixMode(GL_MODELVIEW);                            // Define que a matriz é a de modelo
     atualizarObjetos();
-    glLoadIdentity();
-    glViewport(0, 200, 200, 200);
-    gluLookAt(0.0, 0.0, .0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0); // Eixo XY
-    desenharBule();
-    glLoadIdentity();
-    glViewport(200, 200, 200, 200);
-    gluLookAt(1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); //Eixo YZ
-    desenharBule();
-    glLoadIdentity();
-    glViewport(0, 0, 200, 200); // Eixo XZ
-    gluLookAt(0.0, 1.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, 1.0);
-    desenharBule();
-    glLoadIdentity();
-    glViewport(200, 0, 200, 200);
-    gluLookAt(0.0, 1.0, 0.0, 0.0, 0.0, 0.0,-1.0, 0.0, 0.0); // Perspectiva
+
+    glLoadIdentity();//Eixo XY
+    glViewport(0, 300, 300, 300);
+    gluLookAt(0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
     desenharBule();
 
-    //desenharAmbiente();
+    glLoadIdentity();//Eixo YZ
+    glViewport(300, 300, 300, 300);
+    gluLookAt(1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    desenharBule();
+
+    glLoadIdentity();// Eixo XZ
+    glViewport(0, 0, 300, 300); // Janela de exibição
+    gluLookAt(0.0, 1.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, -1.0);//local da câmera
+    desenharBule();
+
+    glLoadIdentity();
+    glViewport(300, 0, 300, 300); // Janela de exibição
+    gluLookAt(0.3, 0.3, 0.7, 0.0, 0.0, 0.0,0.0, 1.0, 0.0); //local da câmera
+    gluPerspective(40.0, 1.0, 1.0, 1.0); // Perspectiva
+    desenharBule();
 
 
 
     // glLoadIdentity();                                      // Carrega a matriz identidade
-
     glFlush();                                             // Desenha os comandos não executados
 
     glutSwapBuffers();
@@ -157,7 +155,7 @@ void telaInicial()
 
 void iluminacao()
 {
-    float position[4] = {2.0f, 6.0f, 2.0f, 1.0f};
+    float position[4] = {2.0f, 2.0f, 2.0f, 1.0f};
     float white[4] = {1.0f, 1.0f, 1.0f, 1.0f};
     float black[4] = {0.0f, 0.0f, 0.0f, 1.0f};
 
@@ -167,7 +165,7 @@ void iluminacao()
     glLightfv(GL_LIGHT0, GL_SPECULAR, white);
 
     glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.06f);
-    glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.01f);
+    glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.15f);
     glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.01f);
 
     float global_ambient[4] = {0.9f, 0.9f, 0.9f, 1.0f};
@@ -183,6 +181,9 @@ void timer(int extra)
     glutTimerFunc(15, timer, 0);
 }
 
+/*
+Função para atualizar o eixo de rotação
+*/
 void atualizarObjetos()
 {
     x = x + 1;
@@ -214,12 +215,12 @@ void definirMaterialObjeto(Material material)
 void desenharBule()
 {
     glPushMatrix();
-        definirMaterialObjeto(turquesa);
+        definirMaterialObjeto(ouro);
         glTranslatef(0.0, 0.0, 0.0);
-        glRotatef(0, 1, 0, 0);
-        glRotatef(90, 0, 1, 0);
-        glRotatef(0, 0, 0, 1);
-        //glRotatef(x, 0, 1, 0);
+        glRotatef(0, 1, 0, 0); //centralizar o bule no eixo X
+        glRotatef(0, 0, 1, 0); //centralizar o bule no eixo Y
+        glRotatef(0, 0, 0, 1); //centralizar o bule no eixo Z
+        glRotatef(x, 0, 1, 0); //aplicar rotação em torno de Y
         glutSolidTeapot(0.40f);
     glPopMatrix();
 }
