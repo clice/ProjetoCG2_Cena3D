@@ -141,7 +141,7 @@ void telaInicial()
 
     glLoadIdentity();
     glViewport(300, 0, 300, 300); // Janela de exibição
-    gluLookAt(0.3, 0.3, 0.7, 0.0, 0.0, 0.0,0.0, 1.0, 0.0); //local da câmera
+    gluLookAt(1.0, 1.0, 0.7, 0.0, 0.0, 0.0,0.0, 1.0, 0.0); //local da câmera
     gluPerspective(40.0, 1.0, 1.0, 1.0); // Perspectiva
     desenharBule();
 
