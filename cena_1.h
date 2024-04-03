@@ -7,12 +7,12 @@
  * DECLARAÇÕES DAS FUNÇÕES
  */
 int iniciarCena1(int argc, char ** argv);
-void telaInicialCena1();
+void cena1();
 
+void desenharAmbiente();
 void desenharChao();
 void desenharParedeA();
 void desenharParedeL();
-void desenharAmbiente();
 
 void desenharEsfera();
 void desenharBule();

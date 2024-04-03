@@ -11,10 +11,11 @@ extern float x;
  */
 typedef struct Material
 {
-    float ka[4];
-    float kd[4];
-    float ks[4];
-    float ns;
+    // Reflexão ambiente para a cor do objeto, quando não iluminado diretamente pela fonte de luz
+    float kAmbiente[4];   
+    float kDifusa[4];     
+    float kEspecular[4];  
+    float nBrilhosidade;
 } Material;
 
 ///////////////////////////////////////////////////////////////////
