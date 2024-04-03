@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1711936146 source:c:\users\alexandre\projetocg2_cena3d\main.c
+	<windows.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/freeglut.h>
+	<GL/glut.h>
+
+1712107172 source:c:\users\clice\projects\cg\projetocg2_cena3d\alex\projetocg2_cena3d\main.c
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"cena_2.h"
+
+1712107088 source:c:\users\clice\projects\cg\projetocg2_cena3d\alex\projetocg2_cena3d\cena_2.c
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/freeglut.h>
+	<GL/glut.h>
+	"cena_2.h"
+
+1712103558 c:\users\clice\projects\cg\projetocg2_cena3d\alex\projetocg2_cena3d\cena_1.h
+	"funcoes.h"
+
+1712107039 source:c:\users\clice\projects\cg\projetocg2_cena3d\alex\projetocg2_cena3d\cena_1.c
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/freeglut.h>
+	<GL/glut.h>
+	"cena_1.h"
+
+1712107120 c:\users\clice\projects\cg\projetocg2_cena3d\alex\projetocg2_cena3d\funcoes.h
+
+1712107172 c:\users\clice\projects\cg\projetocg2_cena3d\alex\projetocg2_cena3d\cena_2.h
+	"cena_1.h"
+
+1712106942 source:c:\users\clice\projects\cg\projetocg2_cena3d\alex\projetocg2_cena3d\funcoes.c
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/freeglut.h>
+	<GL/glut.h>
+	"funcoes.h"
+
