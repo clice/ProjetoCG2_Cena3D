@@ -32,6 +32,18 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="README.md" />
+		<Unit filename="cena_1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cena_1.h" />
+		<Unit filename="cena_2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cena_2.h" />
+		<Unit filename="funcoes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoes.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
