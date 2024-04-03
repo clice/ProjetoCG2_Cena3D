@@ -1,22 +1,24 @@
-# ComputaÁ„o Gr·fica
+# Computa√ß√£o Gr√°fica
 
-**Equipe:** Alexandre Marques Cabral e Clice Bezerra Brito Rom„o
+**Equipe:** 
+ - Alexandre Marques Cabral
+ - Clice Bezerra Brito Rom√£o
 
-## ConstruÁ„o de "RenderizaÁ„o de uma Cena 3D"
+## Constru√ß√£o de "Renderiza√ß√£o de uma Cena 3D"
 
-### InstruÁıes para execuÁ„o do projeto
+### Instru√ß√µes para execu√ß√£o do projeto
 
-Com o OpenGL instalado, È possÌvel utilizar tanto o Code::Blocks como o WSL (Windows Subsystem for Linux) instalado no Windows para a compilaÁ„o do projeto.
+Com o OpenGL instalado, √© poss√≠vel utilizar tanto o Code::Blocks como o WSL (Windows Subsystem for Linux) instalado no Windows para a compila√ß√£o do projeto.
 
 #### 1. Code::Blocks
 
-… necess·rio primeiramente fazer algumas alterÁıes no compilador do programa para que seja possÌvel compilar o OpenGL. Fazendo as alteraÁıes corretamente, a execuÁ„o do programa ocorre como outros projetos usando o CodÎ::Blocks s„o executados e testados.
+√â necess√°rio primeiramente fazer algumas alter√ß√µes no compilador do programa para que seja poss√≠vel compilar o OpenGL. Fazendo as altera√ß√µes corretamente, a execu√ß√£o do programa ocorre como outros projetos usando o Cod√´::Blocks s√£o executados e testados.
 
 #### 2. WSL (Windows Subsystem for Linux)
 
-Para a utilizaÁ„o do WSL, podesse compilar o projeto utilizando o comando:
+Para a utiliza√ß√£o do WSL, podesse compilar o projeto utilizando o comando:
 ```bash
-g++ main.c -o main -lglut -lGLU -lGL
+g++ main.c funcoes.c cena_1.c cena_2.c -o main -lglut -lGLU -lGL
 ```
 
 Para rodar o projeto, utilizasse o comando:
@@ -26,6 +28,8 @@ Para rodar o projeto, utilizasse o comando:
 
 OBS: Lembrando que esses comandos devem ser executados dentro da pasta do projeto.
 
-TambÈm È possÌvel utilizar o Code::Blocks para a compilar e testar o projeto, porÈm configuraÁıes s„o necess·rias para compilaÁ„o e a utilizaÁ„o do OpenGL.
+Tamb√©m √© poss√≠vel utilizar o Code::Blocks para a compilar e testar o projeto, por√©m configura√ß√µes s√£o necess√°rias para compila√ß√£o e a utiliza√ß√£o do OpenGL.
 
-### InstruÁıes para uso do programa
+### Instru√ß√µes para uso do programa
+
+√â necess√°rio escolher visualizar umas das duas op√ß√µes de cenas dispon√≠veis no "menu". O programa somente executa uma cena por vez, sendo a op√ß√£o 1 da cena com os tr√™s objetos (bule, bola e toro) e a op√ß√£o 2 da cena com os quatro bules rotacionando. Quando uma cena √© selecionada ela abre e ao fechar a tela o programa fecha, ent√£o para abrir outra cena tem que executar novamente o programa.

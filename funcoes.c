@@ -1,4 +1,3 @@
-#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/gl.h>
@@ -11,7 +10,7 @@
 // /*
 //  * VARIÁVEL
 //  */
-// float x = 0.0;
+float x = 0.0;
 
 ///////////////////////////////////////////////////////////////////
 
@@ -68,7 +67,7 @@ void timer(int extra)
  */
 void atualizarObjetos()
 {
-    x = x + 1;
+    x = x + 1.0;
 }
 
 /*

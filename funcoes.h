@@ -4,7 +4,7 @@
 /*
  * VARIÁVEL
  */
-extern float x = 0.0;
+extern float x;
 
 /*
  * ESTRUTURA MATERIAL CENA 1

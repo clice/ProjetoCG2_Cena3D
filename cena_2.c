@@ -1,4 +1,3 @@
-#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/gl.h>
@@ -12,7 +11,6 @@
  * VARIÁVEL
  */
 static int telaCena2;
-// float x = 0.0;
 
 ///////////////////////////////////////////////////////////////////
 
