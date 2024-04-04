@@ -1,4 +1,3 @@
-// #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/gl.h>
@@ -7,6 +6,11 @@
 #include <GL/glut.h>
 
 #include "cena_1.h"
+
+/*
+ * VARIÁVEL
+ */
+static int telaCena1;
 
 ///////////////////////////////////////////////////////////////////
 
@@ -57,15 +61,15 @@ int iniciarCena1(int argc, char ** argv)
 {
     // Inicializando o OpenGL
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowPosition(200, 0);
     glutInitWindowSize(400, 400);
-    glutCreateWindow("Renderizacao da Cena 1 - Bule, Bola e Toro");
+
+    telaCena1 = glutCreateWindow("Renderizacao da Cena 1 - Bule, Bola e Toro");
 
     init();
-
-    glutDisplayFunc(cena1);                  // Para mostrar elementos na tela rederizando os objetos
-    // glutTimerFunc(0, timer, 0);
+    glutDisplayFunc(telaInicialCena1);                  // Para mostrar elementos na tela rederizando os objetos
+    glutTimerFunc(0, timer, 0);
     glutMainLoop();
 
     return 0;
@@ -74,23 +78,25 @@ int iniciarCena1(int argc, char ** argv)
 /*
  * FUNÇÃO PARA CONFIGURAR A TELA INICIAL
  */
-void cena1()
+void telaInicialCena1()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // Limpa o buffer
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);    // Limpa o buffer
 
-    glMatrixMode(GL_MODELVIEW);                          // Define que a matriz é a de modelo
+    glMatrixMode(GL_MODELVIEW);                            // Define que a matriz é a de modelo
+    atualizarObjetos();
 
-    // atualizarObjetos();
+    glLoadIdentity();
+    
+    gluLookAt(-0.7, 0.5, 0.7,
+                0.0, 0.0, 0.0,
+                0.0, 1.0, 0.0);
+    gluPerspective(40, 1.0, 1.0, 1.0);
+    desenharAmbiente();
+    desenharEsfera();
+    desenharBule();
+    desenharToro();
 
-    // glLoadIdentity();         
-    // gluPerspective(40, 1.0, 1.0, 1.0);
-    glutSolidSphere(1.5, 40, 40);
-
-    // desenharAmbiente();
-
-    // desenharEsfera();
-    // desenharBule();
-    // desenharToro();
+    // glLoadIdentity();                                      // Carrega a matriz identidade
 
     glFlush();                                             // Desenha os comandos não executados
 
@@ -105,8 +111,8 @@ void cena1()
 void desenharAmbiente()
 {
     desenharChao();
-    // desenharParedeA();
-    // desenharParedeL();
+    desenharParedeA();
+    desenharParedeL();
 }
 
 /*
@@ -115,22 +121,18 @@ void desenharAmbiente()
 void desenharChao()
 {
     glBegin(GL_QUADS);
-
-    definirMaterialObjeto(Rubi);
-
-    // Fundo
+    definirMaterialObjeto(Rubi); //Fundo
     glVertex3f(-1.0f, 0.05f, -1.0f);
     glVertex3f(1.0f, 0.05f, -1.0f);
     glVertex3f(1.0f, 0.05f, 1.0f);
     glVertex3f(-1.0f, 0.05f, 1.0f);
 
-    // Topo
-    glVertex3f(-1.0f, 0.15f, 1.0f);
-    glVertex3f(-1.0f, 0.15f, -1.0f);
-    glVertex3f(1.0f, 0.15f, 1.0f);
-    glVertex3f(1.0f, 0.15f, -1.0f);
+    glVertex3f(-1.0f, 0.15f,1.0f); //Topo
+    glVertex3f(-1.0f, 0.15f,-1.0f);
+    glVertex3f(1.0f, 0.15f,1.0f);
+    glVertex3f(1.0f, 0.15f,-1.0f);
 
-    // Lado Z+
+    //Lado Z+
     glVertex3f(-1.0f, 0.05f, 1.0f);
     glVertex3f(1.0f, 0.05f, 1.0f);
     glVertex3f(1.0f, 0.15f, 1.0f);
@@ -142,13 +144,13 @@ void desenharChao()
     glVertex3f(1.0f, 0.15f, -1.0f);
     glVertex3f(-1.0f, 0.15f, -1.0f);
 
-    // Lado X+
+    //Lado X+
     glVertex3f(1.0f, 0.05f, 1.0f);
     glVertex3f(1.0f, 0.15f,-1.0f);
     glVertex3f(1.0f, 0.05f, -1.0f);
     glVertex3f(1.0f, 0.15f, 1.0f);
 
-    // Lado X-
+    //Lado X-
     glVertex3f(-1.0f, 0.05f, 1.0f);
     glVertex3f(-1.0f, 0.15f, -1.0f);
     glVertex3f(-1.0f, 0.05f, -1.0f);
@@ -158,25 +160,24 @@ void desenharChao()
 }
 
 /*
- * FUNÇÃO PARA CONFIGURAR A PARECE NO EIXO Z-
+ * FUNÇÃO PARA CONFIGURAR A TELA INICIAL
  */
-void desenharParedeA()
+void desenharParedeA() //Parede no Eixo Z-
 {
     glBegin(GL_QUADS);
-
-    // Fundo
+    //Fundo
     glVertex3f(-1.0f, 0.15f, -1.0f);
     glVertex3f(1.0f, 0.15f, -1.0f);
     glVertex3f(1.0f, 0.15f, -0.9f);
     glVertex3f(-1.0f, 0.15f, -0.9f);
 
-    // Topo
-    glVertex3f(-1.0f, 1.0f, -0.9f);
+
+    glVertex3f(-1.0f, 1.0f, -0.9f); //Topo
     glVertex3f(-1.0f, 1.0f, -1.0f);
     glVertex3f(1.0f, 1.0f, -0.9f);
     glVertex3f(1.0f, 1.0f, -1.0f);
 
-    // Lado Z+
+    //Lado Z+
     glVertex3f(-1.0f, 0.15f, -0.9f);
     glVertex3f(1.0f, 0.15f, -0.9f);
     glVertex3f(1.0f, 1.0f, -0.9f);
@@ -188,13 +189,13 @@ void desenharParedeA()
     glVertex3f(1.0f, 1.0f, -1.0f);
     glVertex3f(-1.0f, 1.0f, -1.0f);
 
-    // Lado X+
+    //Lado X+
     glVertex3f(1.0f, 0.15f, -0.9f);
     glVertex3f(1.0f, 1.0f,-1.0f);
     glVertex3f(1.0f, 0.15f, -1.0f);
     glVertex3f(1.0f, 1.0f, -0.9f);
 
-    // Lado X-
+    //Lado X-
     glVertex3f(-1.0f, 0.15f, -0.9f);
     glVertex3f(-1.0f, 1.0f, -1.0f);
     glVertex3f(-1.0f, 0.15f, -1.0f);
@@ -204,25 +205,24 @@ void desenharParedeA()
 }
 
 /*
- * FUNÇÃO PARA CONFIGURAR A PARECE NO EIXO X+
+ * FUNÇÃO PARA CONFIGURAR A TELA INICIAL
  */
-void desenharParedeL()
+void desenharParedeL() //Parede no Eixo X+
 {
     glBegin(GL_QUADS);
-
-     // Fundo
+     //Fundo
     glVertex3f(0.9f, 0.15f, -1.0f);
     glVertex3f(1.0f, 0.15f, -1.0f);
     glVertex3f(1.0f, 0.15f, 1.0f);
     glVertex3f(0.9f, 0.15f, 1.0f);
 
-    // Topo
-    glVertex3f(0.9f, 1.0f, 1.0f);
+
+    glVertex3f(0.9f, 1.0f, 1.0f); //Topo
     glVertex3f(0.9f, 1.0f, -1.0f);
     glVertex3f(1.0f, 1.0f, 1.0f);
     glVertex3f(1.0f, 1.0f, -1.0f);
 
-    // Lado Z+
+    //Lado Z+
     glVertex3f(0.9f, 0.15f, 1.0f);
     glVertex3f(1.0f, 0.15f, 1.0f);
     glVertex3f(1.0f, 1.0f, 1.0f);
@@ -234,13 +234,13 @@ void desenharParedeL()
     glVertex3f(1.0f, 1.0f, -1.0f);
     glVertex3f(0.9f, 1.0f, -1.0f);
 
-    // Lado X+
+    //Lado X+
     glVertex3f(1.0f, 0.15f, 1.0f);
     glVertex3f(1.0f, 1.0f,-1.0f);
     glVertex3f(1.0f, 0.15f, -1.0f);
     glVertex3f(1.0f, 1.0f, 1.0f);
 
-    // Lado X-
+    //Lado X-
     glVertex3f(0.9f, 0.15f, 1.0f);
     glVertex3f(0.9f, 1.0f, -1.0f);
     glVertex3f(0.9f, 0.15f, -1.0f);
@@ -258,6 +258,7 @@ void desenharEsfera()
 {
     glPushMatrix();
         definirMaterialObjeto(Branco);
+        //glRotatef(x, 0, 1, 0);
         glTranslatef(0.75, 0.27, 0.0);
         glutSolidSphere(0.15, 40, 40);
     glPopMatrix();
@@ -270,6 +271,7 @@ void desenharBule()
 {
     glPushMatrix();
         definirMaterialObjeto(Turquesa);
+        //glRotatef(x, 0, 1, 0);
         glTranslatef(-0.60, 0.39, 0.0);
         glutSolidTeapot(0.40f);
     glPopMatrix();
