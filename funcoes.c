@@ -7,9 +7,9 @@
 
 #include "funcoes.h"
 
-// /*
-//  * VARIÁVEL
-//  */
+/*
+ * VARIÁVEL
+ */
 float x = 0.0;
 
 ///////////////////////////////////////////////////////////////////
@@ -30,7 +30,7 @@ void init()
 }
 
 /*
- * FUNÇÃO PARA CONFIGURAR A iLUMINAÇÃO DA CENA 1
+ * FUNÇÃO PARA CONFIGURAR A ILUMINAÇÃO
  */
 void iluminacao()
 {
@@ -63,7 +63,7 @@ void timer(int extra)
 ///////////////////////////////////////////////////////////////////
 
 /*
- * FUNÇÃO PARA CONFIGURAR A TELA INICIAL
+ * FUNÇÃO PARA ATUALIZAR A POSIÇÃO DO OBJETO
  */
 void atualizarObjetos()
 {

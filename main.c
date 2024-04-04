@@ -30,7 +30,6 @@ int main (int argc, char ** argv)
             break;
         default:
             printf("OPCAO INVALIDA!");
-
     }
 
     return 0;
